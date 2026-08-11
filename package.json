@@ -1,0 +1,33 @@
+{
+  "name": "css-for-cats",
+  "version": "1.0.0",
+  "description": "A gentle introduction to CSS for beginner programmers, in the style of JavaScript for Cats",
+  "main": "render.js",
+  "scripts": {
+    "render": "node render.js",
+    "deploy": "gh-pages-deploy"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lucanenni/css-for-cats.git"
+  },
+  "gh-pages-deploy": {
+    "prep": [
+      "render"
+    ],
+    "noprompt": "true"
+  },
+  "author": "Luca Nenni",
+  "license": "SEE LICENSE IN LICENSE",
+  "bugs": {
+    "url": "https://github.com/lucanenni/css-for-cats/issues"
+  },
+  "homepage": "https://github.com/lucanenni/css-for-cats",
+  "dependencies": {
+    "marked": "^0.3.2",
+    "mustache": "^1.0.0"
+  },
+  "devDependencies": {
+    "gh-pages-deploy": "^0.1.1"
+  }
+}
