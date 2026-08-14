@@ -304,3 +304,5 @@ Got a topic you wish this covered? Open an issue [on GitHub](https://github.com/
 <hr>
 
 *CSS for Cats is an independent fan project, written for [@maxogden](http://twitter.com/maxogden)'s [JavaScript for Cats](https://github.com/max-mapper/javascript-for-cats) universe, with love and no official affiliation. Contributions and corrections are welcome on [GitHub](https://github.com/lucanenni/css-for-cats).*
+
+*Maintenance note (2026-08-14): build dependencies (`marked`, `mustache`) updated to fix known high-severity security advisories (a ReDoS in `marked`, an XSS in `mustache`); `render.js` adjusted for the new `marked` API. No tutorial content changed.*
