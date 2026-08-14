@@ -4,8 +4,7 @@
   "description": "A gentle introduction to CSS for beginner programmers, in the style of JavaScript for Cats",
   "main": "render.js",
   "scripts": {
-    "render": "node render.js",
-    "deploy": "npm run render && gh-pages -d . -s \"{index.html,stylesheets/**,images/**}\" -m \"Deploy site\" --nojekyll --before-add ./gh-pages-before-add.js"
+    "render": "node render.js"
   },
   "repository": {
     "type": "git",
@@ -20,8 +19,5 @@
   "dependencies": {
     "marked": "^18.0.9",
     "mustache": "^4.2.0"
-  },
-  "devDependencies": {
-    "gh-pages": "^6.3.0"
   }
 }
