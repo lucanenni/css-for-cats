@@ -24,8 +24,8 @@
   },
   "homepage": "https://github.com/lucanenni/css-for-cats",
   "dependencies": {
-    "marked": "^0.3.2",
-    "mustache": "^1.0.0"
+    "marked": "^18.0.9",
+    "mustache": "^4.2.0"
   },
   "devDependencies": {
     "gh-pages-deploy": "^0.1.1"
