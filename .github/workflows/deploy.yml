@@ -7,14 +7,16 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
+  pages: write
+  id-token: write
 
 concurrency:
-  group: gh-pages-deploy
+  group: pages
   cancel-in-progress: false
 
 jobs:
-  deploy:
+  build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -27,17 +29,28 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Configure git for the gh-pages deploy
-        run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          # gh-pages clones into its own cache directory (node_modules/.cache),
-          # which doesn't inherit the credentials actions/checkout sets up only
-          # for this working copy. Rewrite github.com URLs globally so that
-          # clone picks up the token too.
-          git config --global "url.https://x-access-token:${GH_TOKEN}@github.com/.insteadOf" "https://github.com/"
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Render site
+        run: npm run render
 
-      - name: Render and deploy
-        run: npm run deploy
+      - name: Prepare Pages artifact
+        run: |
+          mkdir -p dist
+          cp index.html dist/
+          cp -r stylesheets dist/
+          cp -r images dist/
+          touch dist/.nojekyll
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
