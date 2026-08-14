@@ -5,7 +5,7 @@
   "main": "render.js",
   "scripts": {
     "render": "node render.js",
-    "deploy": "npm run render && gh-pages -d . -s \"{index.html,stylesheets/**,images/**}\" -m \"Deploy site\" --nojekyll"
+    "deploy": "npm run render && gh-pages -d . -s \"{index.html,stylesheets/**,images/**}\" -m \"Deploy site\" --nojekyll --before-add ./gh-pages-before-add.js"
   },
   "repository": {
     "type": "git",
